@@ -1,0 +1,4 @@
+Chào mừng đến với VulnNotes!
+
+Đây là file hợp lệ có thể tải qua /download?file=welcome.txt.
+Thử xem endpoint này có chặn đường dẫn ra ngoài thư mục files/ không...

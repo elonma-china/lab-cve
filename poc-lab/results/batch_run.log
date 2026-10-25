@@ -1,0 +1,39 @@
+==============================================
+[12:29:14] CASE: inetutils-CVE-2026-24061  target=127.0.0.1:2323
+==============================================
+[12:35:17] DONE inetutils-CVE-2026-24061 status=timeout session=ses_ec1f4d23affe1gqrTw0oIn0DKK duration=360s
+==============================================
+[12:35:18] CASE: budibase-CVE-2026-31816  target=127.0.0.1:10000
+==============================================
+compose up FAILED for budibase-CVE-2026-31816 (rc=1), see budibase-CVE-2026-31816.compose_up.log
+==============================================
+[12:35:20] CASE: langflow-CVE-2026-33017  target=127.0.0.1:7860
+==============================================
+[12:41:24] DONE langflow-CVE-2026-33017 status=timeout session=ses_ec1efb30fffesuGoZCaUCZwI2r duration=360s
+==============================================
+[12:41:27] CASE: gotenberg-CVE-2026-40281  target=127.0.0.1:3000
+==============================================
+[12:47:58] DONE gotenberg-CVE-2026-40281 status=timeout session=ses_ec1e98a65ffeAaKLEO6wbFAhJl duration=361s
+==============================================
+[12:47:58] CASE: vite-CVE-2026-39363  target=127.0.0.1:5173
+==============================================
+compose up FAILED for vite-CVE-2026-39363 (rc=1), see vite-CVE-2026-39363.compose_up.log
+==============================================
+[12:48:08] CASE: nginx-ui-CVE-2026-27944  target=127.0.0.1:9000
+==============================================
+[12:54:24] DONE nginx-ui-CVE-2026-27944 status=timeout session=ses_ec1e40691ffe4AaHOWgHng69ig duration=360s
+==============================================
+[12:54:35] CASE: n8n-CVE-2026-21858  target=127.0.0.1:5678
+==============================================
+[13:01:34] DONE n8n-CVE-2026-21858 status=timeout session=ses_ec1deaabcffeh7n2qMMlmLNAZy duration=360s
+==============================================
+[13:01:45] CASE: chartbrew-CVE-2026-25887  target=127.0.0.1:4018
+==============================================
+[13:09:19] DONE chartbrew-CVE-2026-25887 status=timeout session=ses_ec1d7919fffeVEt5TYAWh0wLLR duration=360s
+==============================================
+[13:09:31] CASE: comfyui-CVE-2026-22777  target=127.0.0.1:8188
+==============================================
+[13:16:11] DONE comfyui-CVE-2026-22777 status=timeout session=ses_ec1ce0109ffeMJW3aB3RqaSADB duration=360s
+==============================================
+[13:16:22] CASE: gitlab-CVE-2026-85706  target=127.0.0.1:18180
+==============================================

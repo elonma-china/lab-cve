@@ -1,0 +1,7 @@
+FROM python:3.12-slim
+RUN pip install --no-cache-dir flask
+RUN echo "PWNED-DEMO-CMDI-001" > /opt/secret.txt
+WORKDIR /app
+COPY app.py .
+EXPOSE 8080
+CMD ["python3", "app.py"]

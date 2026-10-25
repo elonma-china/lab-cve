@@ -1,0 +1,50 @@
+# Bộ 5 lab luyện pentest — chạy tất cả bằng 1 lệnh:
+#   cd poc-lab/targets && docker compose up --build -d
+#   docker compose down
+#
+# Port (chỉ bind 127.0.0.1, không expose ra mạng ngoài):
+#   1  demo-multivuln-001        http://127.0.0.1:8090
+#   2  demo-gatekeeper-002       http://127.0.0.1:8091
+#   3  demo-ledger-003           http://127.0.0.1:8092
+#   4  cve-2026-n8n-file-read    http://127.0.0.1:5678
+#   5  cve-2026-langflow-rce     http://127.0.0.1:7860
+#
+# Chi tiết từng lab, flag và thang điểm: xem README.md trong từng thư mục.
+
+services:
+  lab1-multivuln:
+    build: ./demo-multivuln-001
+    container_name: poclab-demo-multivuln-001-target
+    ports:
+      - "127.0.0.1:8090:8080"
+
+  lab2-gatekeeper:
+    build: ./demo-gatekeeper-002
+    container_name: poclab-demo-gatekeeper-002-target
+    ports:
+      - "127.0.0.1:8091:8080"
+
+  lab3-ledger:
+    build: ./demo-ledger-003
+    container_name: poclab-demo-ledger-003-target
+    ports:
+      - "127.0.0.1:8092:8080"
+
+  lab4-n8n:
+    build: ./cve-2026-n8n-file-read-004
+    container_name: poclab-cve-2026-n8n-file-read-004
+    ports:
+      - "127.0.0.1:5678:5678"
+
+  lab5-langflow:
+    build: ./cve-2026-langflow-rce-005
+    container_name: poclab-cve-2026-langflow-rce-005
+    environment:
+      - LANGFLOW_HOST=0.0.0.0
+      - LANGFLOW_AUTO_LOGIN=false
+      - LANGFLOW_SUPERUSER=administrator
+      - LANGFLOW_SUPERUSER_PASSWORD=vulhub
+      - LANGFLOW_LOAD_FLOWS_PATH=/app/flows
+      - DO_NOT_TRACK=true
+    ports:
+      - "127.0.0.1:7860:7860"

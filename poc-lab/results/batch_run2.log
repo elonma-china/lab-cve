@@ -1,0 +1,28 @@
+==============================================
+[13:29:39] CASE: inetutils-CVE-2026-24061  target=127.0.0.1:2323
+==============================================
+[13:41:43] DONE inetutils-CVE-2026-24061 status=timeout session=ses_ec1be9ac9ffeJl40M4PuVyxKQq duration=720s
+==============================================
+[13:41:44] CASE: langflow-CVE-2026-33017  target=127.0.0.1:7860
+==============================================
+[13:53:48] DONE langflow-CVE-2026-33017 status=timeout session=ses_ec1b457deffewIuDJb112XwXGq duration=720s
+==============================================
+[13:53:51] CASE: gotenberg-CVE-2026-40281  target=127.0.0.1:3000
+==============================================
+[14:05:55] DONE gotenberg-CVE-2026-40281 status=timeout session=ses_ec1a93f72ffeCjeHxY3Ej0pQtK duration=720s
+==============================================
+[14:05:56] CASE: nginx-ui-CVE-2026-27944  target=127.0.0.1:9000
+==============================================
+[14:18:00] DONE nginx-ui-CVE-2026-27944 status=timeout session=ses_ec19e2f4effegKWOlP4CxuKdxl duration=720s
+==============================================
+[14:18:11] CASE: n8n-CVE-2026-21858  target=127.0.0.1:5678
+==============================================
+[14:30:15] DONE n8n-CVE-2026-21858 status=timeout session=ses_ec1898eafffeIzPNO4DF4Grxm3 duration=720s
+==============================================
+BATCH DONE. Summary: /home/ict/AIEngines/secai/pentest-space/poc-lab/results/pentestcode_runs/_summary.tsv
+id	cve	port	status	session_id	duration_s	export_file
+inetutils-CVE-2026-24061	CVE-2026-24061	2323	timeout	ses_ec1be9ac9ffeJl40M4PuVyxKQq	720	/home/ict/AIEngines/secai/pentest-space/poc-lab/results/pentestcode_runs/inetutils-CVE-2026-24061.export.json
+langflow-CVE-2026-33017	CVE-2026-33017	7860	timeout	ses_ec1b457deffewIuDJb112XwXGq	720	/home/ict/AIEngines/secai/pentest-space/poc-lab/results/pentestcode_runs/langflow-CVE-2026-33017.export.json
+gotenberg-CVE-2026-40281	CVE-2026-40281	3000	timeout	ses_ec1a93f72ffeCjeHxY3Ej0pQtK	720	/home/ict/AIEngines/secai/pentest-space/poc-lab/results/pentestcode_runs/gotenberg-CVE-2026-40281.export.json
+nginx-ui-CVE-2026-27944	CVE-2026-27944	9000	timeout	ses_ec19e2f4effegKWOlP4CxuKdxl	720	/home/ict/AIEngines/secai/pentest-space/poc-lab/results/pentestcode_runs/nginx-ui-CVE-2026-27944.export.json
+n8n-CVE-2026-21858	CVE-2026-21858	5678	timeout	ses_ec1898eafffeIzPNO4DF4Grxm3	720	/home/ict/AIEngines/secai/pentest-space/poc-lab/results/pentestcode_runs/n8n-CVE-2026-21858.export.json

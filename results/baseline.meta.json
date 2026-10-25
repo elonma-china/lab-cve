@@ -1,0 +1,14 @@
+{
+  "dataset_sha256": "e0e6a43efe2f1fce83c9b883a6b1a8616da903cf6efdb8173524702f8f70b66c",
+  "base_url": "http://192.165.134.28:10338/v1",
+  "model_requested": "DuyTa/Cyber-F1-AWQ",
+  "system_prompt": "Bạn là trợ lý an ninh mạng. Trả lời bằng tiếng Việt, ngắn gọn (tối đa 200 từ), bám sát câu hỏi. Nêu giả định khi thiếu dữ liệu.",
+  "temperature": 0,
+  "max_tokens": 1536,
+  "enable_thinking": false,
+  "started_at_utc": "2026-10-14T08:00:24.833768+00:00",
+  "dataset_path": "/home/ict/AIEngines/secai/pentest-space/data/pentest_100.jsonl",
+  "concurrency": 2,
+  "timeout_seconds": 180,
+  "mode": "direct LLM; no RAG; no external tools; authorized-lab prompts"
+}

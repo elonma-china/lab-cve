@@ -1,0 +1,11 @@
+services:
+  target:
+    build: .
+    container_name: poclab-demo-ledger-003-target
+    ports:
+      - "8092:8080"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8080/',timeout=2)"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
