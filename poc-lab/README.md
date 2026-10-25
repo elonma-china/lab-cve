@@ -41,15 +41,21 @@ trước về custom provider pentestcode).
 dựng môi trường trước rồi mới tấn công tay/qua tool khác:
 
 ```sh
-python3 build_lab.py --batch 1        # lô 1 = CVE-2026 (8/14 case đã wired)
-python3 build_lab.py --batch 2        # lô 2 = CVE-2025 (2/17 case đã wired)
-python3 build_lab.py --batch all      # toàn bộ case đã wired, mọi lô
-python3 build_lab.py --only <id>      # 1 case cụ thể, kể cả demo-cmdi-001
-python3 build_lab.py --batch 1 --down # teardown thay vì build
+python3 build_lab.py --batch 1 --list          # xem STT + tên lab trong lô 1, chưa build gì
+python3 build_lab.py --batch 1                 # build toàn bộ case lô 1 đã wired
+python3 build_lab.py --batch 1 --select 1,3,5  # chỉ build case số 1, 3, 5 (theo STT ở --list)
+python3 build_lab.py --batch 1 --select 1-10   # 10 case đầu lô 1 (nếu lô có đủ)
+python3 build_lab.py --batch 1 --select all    # tương đương bỏ --select
+python3 build_lab.py --batch 2                 # lô 2 = CVE-2025
+python3 build_lab.py --batch all               # toàn bộ case đã wired, mọi lô
+python3 build_lab.py --only <id>               # 1 case cụ thể, kể cả demo-cmdi-001
+python3 build_lab.py --batch 1 --down          # teardown thay vì build
 ```
 
-Case chưa có `targets/<id>/docker-compose.yml` được in ra `[skip]`, không coi là lỗi —
-xem `targets/_vulhub-ref/` để biết compose gốc cần port sang.
+STT trong `--select` luôn đánh theo đúng thứ tự hiện ra ở `--list` của cùng lô đó (không
+cố định toàn cục qua các lô khác nhau). Case chưa có `targets/<id>/docker-compose.yml`
+được in ra `[skip]`/`thiếu target`, không coi là lỗi — xem `targets/_vulhub-ref/` để biết
+compose gốc cần port sang.
 
 ## Chấm điểm thang 10 theo độ thâm nhập
 
