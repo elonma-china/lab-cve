@@ -83,7 +83,14 @@ def parse_select(expr: str, n: int) -> list[int]:
     return out
 
 
-def compose(case_id: str, action: str) -> bool:
+def host_port(case_id: str) -> str | None:
+    """Đọc 'ports: - "127.0.0.1:HOST:CONTAINER"' từ docker-compose.yml, nếu có."""
+    compose_file = ROOT / "targets" / case_id / "docker-compose.yml"
+    m = re.search(r'ports:\s*\n\s*-\s*"?([\d.]+):(\d+):(\d+)"?', compose_file.read_text())
+    return m.group(2) if m else None
+
+
+def compose(case_id: str, action: str) -> tuple[bool, str]:
     compose_file = ROOT / "targets" / case_id / "docker-compose.yml"
     project = f"poclab-{case_id}".lower()
     if action == "up":
@@ -92,9 +99,25 @@ def compose(case_id: str, action: str) -> bool:
         cmd = ["docker", "compose", "-p", project, "-f", str(compose_file), "down", "-v"]
     print(f"$ {' '.join(cmd)}")
     result = subprocess.run(cmd, capture_output=True, text=True)
+    err = result.stderr.strip()
     if result.returncode != 0:
-        print(result.stderr.strip(), file=sys.stderr)
-    return result.returncode == 0
+        if "port is already allocated" in err or "Bind for" in err or "address already in use" in err:
+            port = host_port(case_id)
+            print(
+                f"[LỖI] {case_id}: cổng host {port or '?'} đã bị chiếm (process khác đang dùng, "
+                f"hoặc lab này đã build trước đó chưa teardown). Dừng tiến trình đang giữ cổng "
+                f"hoặc chạy '--only {case_id} --down' trước khi build lại.",
+                file=sys.stderr,
+            )
+        elif "is already in use by container" in err or "Conflict. The container name" in err:
+            print(
+                f"[LỖI] {case_id}: container tên 'poclab-{case_id}-target' đã tồn tại (lab này "
+                f"đang chạy rồi). Teardown trước: '--only {case_id} --down'.",
+                file=sys.stderr,
+            )
+        else:
+            print(err, file=sys.stderr)
+    return result.returncode == 0, err
 
 
 def main():
@@ -137,8 +160,17 @@ def main():
             print(f"[skip] {case_id}: chưa có targets/{case_id}/docker-compose.yml")
             skipped.append(case_id)
             continue
-        ok = compose(case_id, action)
-        (built if ok else failed).append(case_id)
+        ok, _ = compose(case_id, action)
+        if ok:
+            built.append(case_id)
+            if action == "up":
+                port = host_port(case_id)
+                if port:
+                    print(f"      -> http://127.0.0.1:{port}  (hoặc giao thức tương ứng, xem targets/{case_id}/README.md nếu có)")
+                else:
+                    print(f"      -> không publish port ra host; truy cập qua network docker (NET=poclab-{case_id.lower()}_default)")
+        else:
+            failed.append(case_id)
 
     print("\n=== Tổng kết ===")
     verb = "Teardown" if args.down else "Build"

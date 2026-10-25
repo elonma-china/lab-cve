@@ -57,6 +57,21 @@ cố định toàn cục qua các lô khác nhau). Case chưa có `targets/<id>/
 được in ra `[skip]`/`thiếu target`, không coi là lỗi — xem `targets/_vulhub-ref/` để biết
 compose gốc cần port sang.
 
+Sau mỗi lần chạy, mục `Tổng kết` cho biết rõ case nào build OK, case nào thất bại, case
+nào bị skip vì thiếu target:
+
+- **Trùng cổng** (`port is already allocated`) hoặc **trùng tên container** (lab đó đang
+  chạy sẵn, chưa teardown) đều được bắt riêng và in `[LỖI] <id>: ...` kèm gợi ý xử lý
+  (dừng tiến trình đang giữ cổng, hoặc `--only <id> --down` trước khi build lại). Script
+  **không tự đổi cổng khác** — mỗi CVE đã được gán 1 cổng host cố định (127.0.0.1:<port>)
+  trong `targets/<id>/docker-compose.yml` để tránh trùng cổng *giữa các CVE khác nhau*;
+  trùng chỉ xảy ra khi build lại cùng 1 case chưa teardown, hoặc tiến trình khác trên máy
+  đang chiếm đúng cổng đó.
+- **Build OK** sẽ in kèm URL truy cập ngay dưới dòng lệnh, ví dụ
+  `-> http://127.0.0.1:19231` (đọc từ cổng host khai báo trong docker-compose.yml). Case
+  không publish port ra host (ví dụ `demo-cmdi-001`) sẽ ghi rõ chỉ truy cập được qua
+  network docker của executor, không có URL host.
+
 ## Chấm điểm thang 10 theo độ thâm nhập
 
 `scoring-rubric.md` thay cho pass/fail nhị phân của `oracles/`: chấm 0/2/4/6/8/10 theo
